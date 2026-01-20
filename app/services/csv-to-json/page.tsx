@@ -1,9 +1,10 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 
-export default function UploadPage() {
-  const [file, setFile] = useState<File | null>(null);
+
+export default function CSVToJSONPage() {
+   const [file, setFile] = useState<File | null>(null);
   const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -12,7 +13,7 @@ export default function UploadPage() {
 
   const uploadFile = async () => {
     if (!file) {
-      setError('Please select an Excel (.xlsx) file');
+      setError('Please select an Excel (.csv) file');
       return;
     }
 
@@ -23,7 +24,7 @@ export default function UploadPage() {
     try {
       const formData = new FormData();
       formData.append('file', file);
-       if(!process.env.NEXT_PUBLIC_N8N_WEBHOOK_URL){
+      if(!process.env.NEXT_PUBLIC_N8N_WEBHOOK_URL){
             alert('Webhook URL is not defined !');
             return;
       }
@@ -65,17 +66,17 @@ export default function UploadPage() {
       <div className="w-full max-w-3xl bg-white shadow-xl rounded-2xl p-8">
 
         <h1 className="text-2xl font-bold text-gray-800 mb-2">
-          Excel to JSON Converter
+          CSV to JSON Converter
         </h1>
         <p className="text-gray-500 mb-6">
-          Upload an <strong>.xlsx</strong> file and get structured JSON output.
+          Upload an <strong>.csv</strong> file and get structured JSON output.
         </p>
 
         {/* Upload Box */}
         <label className="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-xl p-6 cursor-pointer hover:border-blue-500 transition">
           <input
             type="file"
-            accept=".xlsx"
+            accept=".csv"
             className="hidden"
             onChange={(e) => setFile(e.target.files?.[0] || null)}
           />
