@@ -29,7 +29,7 @@ export default function UploadPage() {
       }
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_N8N_WEBHOOK_URL!}/excel-to-json`,
+        `${process.env.NEXT_PUBLIC_N8N_WEBHOOK_URL!}/backup/excel-to-json`,
         {
           method: 'POST',
           body: formData,
